@@ -1,16 +1,12 @@
 dist: trusty
 sudo: false
 language: cpp
-
-before_script:
-  - git clone https://github.com/srz-zumix/iutest.git ./iutest
-  - cd ./iutest
-  - git rev-parse HEAD > ../iutest.hash
-  - cd ..
-
 script:
-  - git checkout master
-  - git add -A
-  - git commit -m "update head [ci skip]" || true
-  - git push https://${GITHUB_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git ${TRAVIS_BRANCH}
-
+- git checkout master
+- git submodule foreach git pull origin master
+- git add -A
+- git commit -m "update head [ci skip]" || true
+- git push https://${GITHUB_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git ${TRAVIS_BRANCH}
+env:
+  global:
+    secure: MNFLqeqjRYRxrJIdMOzd0ddEswZZ8QzPbOOBR/VS/OGlG4HQ951vO8tct1rFL9m5xRdSjOeJ1p9ujcB+SeuPMSGKwMIkleDU+xLt/vaqTxCDSElu/HHmkzVFVf69j2S2XkTSmUw08UIEBbaIPvZUvkrgb48SEUBpLclYqNI8n+zLTxiqnXUUUYEmwL7lyb9TFRVfo5zUhKdp1CTcIbn0dGCgkzmuwdeeAbcZwp3GdI2HLJDgJCTzSsVVRVqJzCOmLokn4JYeSkWUgesrvemI+LvGz5QGiNVIdYCXbBBkqus9tu6wwAyBDxthLvIRglv5F9RsatMjTwIQPunDg+H0ae8jL3VmkpqXy1uyPhDh8kFowRSfsQNLnLo/ViibdxqtwLpMxvNH21n6boOxb5c6aC7W7fTRJSi6ctBzZALHq/VMn3vCMtzgyHYtSlJ3SQbtnHrr0CsRbaUmCgIYTHpISxrchdaBTwKn33SNGZK1f4+S18Lbs4LJa1tGecdSSeBa0RZtaNjxgkANxBVT/MogiJANEOvtXjHc28QvYKjuaSWiiAaon5segtsfuvnAUaVAvidrFdlPl5ralRyhu6wtbdOlIoy1DTWAhUrl1Y/aQhPsReGiAUqs/OeqnnyW4tGrUhb7ypPELoOwBJ0Srw5bSkMz25NC5omhnuYD8EO78ro=
