@@ -23,7 +23,7 @@ steps:
 
         # echo | gcc -E -Wp,-v -
 
-        cd test
+        cd iutest/test
 
         make -j 4 ${MAKE_OPTION} && make test
     on_success:
