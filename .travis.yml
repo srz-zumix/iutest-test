@@ -1,0 +1,16 @@
+dist: trusty
+sudo: false
+language: cpp
+
+before_script:
+  - git clone https://github.com/srz-zumix/iutest.git ./iutest
+  - cd ./iutest
+  - git rev-parse HEAD > ../iutest.hash
+  - cd ..
+
+script:
+  - git checkout master
+  - git add -A
+  - git commit -m "update head [ci skip]" || true
+  - git push https://${GITHUB_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git ${TRAVIS_BRANCH}
+
