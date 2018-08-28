@@ -20,7 +20,7 @@ steps:
         cat /proc/cpuinfo
         g++ --version
         # echo | gcc -E -Wp,-v -
-        cd test
+        cd iutest/test
         #make -j 4 ${MAKE_OPTION} && make test
         make -j 4 USE_GTEST=1 && make test
         make clean
