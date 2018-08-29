@@ -9,7 +9,7 @@ steps:
   RunningUnitTests:
     title: Running Unit Tests
     image: '${{BuildingDockerImage}}'
-    working_directory: IMAGE_WORK_DIR
+    working_directory: /codefresh/volume/iutest-test
     entry_point:
       - /bin/sh
       - /codefresh/volume/cf-generated/unit_test_script
@@ -19,7 +19,8 @@ steps:
       content: |
         cat /proc/cpuinfo
         g++ --version
-        ls
+        git submodule init
+        git submodule update
         # echo | gcc -E -Wp,-v -
         cd iutest/test
         #make -j 4 ${MAKE_OPTION} && make test
