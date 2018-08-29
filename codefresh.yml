@@ -19,6 +19,7 @@ steps:
       content: |
         cat /proc/cpuinfo
         g++ --version
+        ls
         # echo | gcc -E -Wp,-v -
         cd iutest/test
         #make -j 4 ${MAKE_OPTION} && make test
