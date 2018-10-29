@@ -26,3 +26,5 @@ RUN echo ${VERSION} | tee image_version
 RUN mkdir /usr/src/iutest
 VOLUME [ "/usr/src/iutest" ]
 WORKDIR /usr/src/iutest
+
+ENTRYPOINT .ci/test.sh

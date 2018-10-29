@@ -1,0 +1,25 @@
+image: docker:latest
+services:
+  - docker:dind
+
+stages:
+  - build
+  - test
+
+variables:
+  TEST_IMAGE: registry.gitlab.com/srz-zumix/iutest-test:$CI_COMMIT_REF_NAME
+
+before_script:
+  - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
+
+build:
+  stage: build
+  script:
+    - docker build --pull -t $TEST_IMAGE .ci/Dockerfile.codefresh
+    - docker push $TEST_IMAGE
+
+test:
+  stage: test
+  script:
+    - docker pull $TEST_IMAGE
+    - docker run -v $(pwd):/iutest $TEST_IMAGE
