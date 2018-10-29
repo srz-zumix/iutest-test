@@ -15,7 +15,7 @@ before_script:
 build:
   stage: build
   script:
-    - docker build --pull -t $TEST_IMAGE .ci/Dockerfile.codefresh
+    - docker build --pull -t $TEST_IMAGE -f .ci/Dockerfile.codefresh
     - docker push $TEST_IMAGE
 
 test:
