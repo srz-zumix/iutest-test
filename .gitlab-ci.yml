@@ -22,4 +22,4 @@ test:
   stage: test
   script:
     - docker pull $TEST_IMAGE
-    - docker run -v $(pwd):/iutest $TEST_IMAGE
+    - docker run -v $(pwd):/iutest-test $TEST_IMAGE

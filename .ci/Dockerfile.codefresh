@@ -23,8 +23,8 @@ RUN echo ${VERSION} | tee image_version
 #RUN echo 'export NACL_SDK_ROOT="$(find /usr/local/nacl_sdk -maxdepth 1 -type d -name 'pepper_*')"' >> ~/.bashrc
 ##RUN echo 'export NACL_SDK_ROOT="$(find /usr/local/nacl_sdk -maxdepth 1 -type d -name 'pepper_*')"' >> ~/.profile
 
-RUN mkdir /usr/src/iutest
-VOLUME [ "/usr/src/iutest" ]
-WORKDIR /usr/src/iutest
+RUN mkdir /iutest-test
+VOLUME [ "/iutest-test" ]
+WORKDIR /iutest-test
 
 ENTRYPOINT .ci/test.sh
