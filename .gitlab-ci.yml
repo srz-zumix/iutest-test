@@ -14,21 +14,24 @@ before_script:
 
 build:
   stage: build
-  except: schedules
+  except:
+    - schedules
   script:
     - docker build --pull -t $TEST_IMAGE -f .ci/Dockerfile.gitlab .
     - docker push $TEST_IMAGE
 
 test:
   stage: test
-  except: schedules
+  except:
+    - schedules
   script:
     - docker pull $TEST_IMAGE
     - docker run -v $(pwd):/iutest-test $TEST_IMAGE
 
 update:
   stage: build
-  only: schedules
+  only:
+    - schedules
   script:
     - git config --global user.email `zumix.cpp@gmail.com`
     - git config --global user.name `srz_zumix (GitLab CI)`
