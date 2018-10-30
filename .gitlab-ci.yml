@@ -14,12 +14,27 @@ before_script:
 
 build:
   stage: build
+  except: schedules
   script:
     - docker build --pull -t $TEST_IMAGE -f .ci/Dockerfile.gitlab .
     - docker push $TEST_IMAGE
 
 test:
   stage: test
+  except: schedules
   script:
     - docker pull $TEST_IMAGE
     - docker run -v $(pwd):/iutest-test $TEST_IMAGE
+
+update:
+  stage: build
+  only: schedules
+  script:
+    - git config --global user.email `zumix.cpp@gmail.com`
+    - git config --global user.name `srz_zumix (GitLab CI)`
+    - git checkout ${CI_COMMIT_REF_NAME}
+    - git submodule foreach git pull origin master
+    - git add -A
+    - git commit -m "update head" || true
+    - git push https://${GIT_CI_USER}:${$GIT_CI_PASS}@gitlab.com/${CI_PROJECT_PATH}.git ${CI_COMMIT_REF_NAME}
+
