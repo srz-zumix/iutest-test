@@ -28,10 +28,12 @@ test:
     - docker pull $TEST_IMAGE
     - docker run -v $(pwd):/iutest-test $TEST_IMAGE
 
-update:
+update_submodule:
   stage: build
   only:
     - schedules
+  before_script:
+    - apk update && apk add git
   script:
     - git config --global user.email 'zumix.cpp@gmail.com'
     - git config --global user.name 'srz_zumix (GitLab CI)'
