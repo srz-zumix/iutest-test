@@ -41,5 +41,5 @@ update_submodule:
     - git submodule foreach git pull origin master
     - git add -A
     - git commit -m "update head" || true
-    - git push https://${GITLAB_USER_NAME}:${$GITLAB_CI_PASS}@gitlab.com/${CI_PROJECT_PATH}.git ${CI_COMMIT_REF_NAME}
+    - git push https://${GITLAB_USER_NAME}:${GITLAB_CI_PASS}@gitlab.com/${CI_PROJECT_PATH}.git ${CI_COMMIT_REF_NAME}
 
