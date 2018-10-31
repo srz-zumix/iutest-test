@@ -33,8 +33,8 @@ update:
   only:
     - schedules
   script:
-    - git config --global user.email `zumix.cpp@gmail.com`
-    - git config --global user.name `srz_zumix (GitLab CI)`
+    - git config --global user.email 'zumix.cpp@gmail.com'
+    - git config --global user.name 'srz_zumix (GitLab CI)'
     - git checkout ${CI_COMMIT_REF_NAME}
     - git submodule foreach git pull origin master
     - git add -A
